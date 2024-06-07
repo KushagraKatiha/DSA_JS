@@ -127,3 +127,18 @@ LinkedList.prototype.reverse = function(){
     }
     this.head = prev
 }
+
+LinkedList.prototype.reverse = function(){
+    let current = this.head
+    let prev = null
+    let next = null
+
+    while(current){
+        next = current.next
+        current.next = prev
+        prev = current
+        current = next
+    }
+
+    this.head = prev
+}
