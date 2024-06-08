@@ -13,10 +13,11 @@ class LinkedList{
 
 LinkedList.prototype.insertAtBegining = function(data){
     const newNode = new Node(data)
+    newNode.next = this.head
     this.head = newNode
 }
 
-LinkedList.prototype.insetAtEnd = function(data){
+LinkedList.prototype.insertAtEnd = function(data){
     const newNode = new Node(data)
     if(!this.head){
         this.head = newNode
@@ -50,25 +51,28 @@ LinkedList.prototype.deleteFirst = function(){
 
 LinkedList.prototype.deleteLast = function(){
     if(!this.head){
-        return 'List is empty !'
+        console.log('The list is empty !');
+        return
     }
 
-    if(this.head.next){
+    if(!this.head.next){
         this.head = null
+        return
     }
 
     let secondLast = this.head
 
-    while(this.secondLast.next.next){
+    while(secondLast.next.next){
         secondLast = secondLast.next
     }
-
+    
     secondLast.next = null
 }
 
 LinkedList.prototype.deleteKey = function(key){
     if(!this.head){
-        return 'The list is empty !'
+        console.log('The list is empty !')
+        return 
     }
 
     if(this.head.data == key){
@@ -78,7 +82,7 @@ LinkedList.prototype.deleteKey = function(key){
 
     let current = this.head
 
-    while(!current.next){
+    while(current.next){
         if(current.next.data === key){
             current.next = current.next.next
             return
@@ -86,7 +90,8 @@ LinkedList.prototype.deleteKey = function(key){
         current = current.next
     }
 
-    return 'No node found with given key !'
+    console.log('No node found with given key !')
+    return 
 }
 
 LinkedList.prototype.search = function(key){
@@ -103,15 +108,21 @@ LinkedList.prototype.search = function(key){
 }
 
 LinkedList.prototype.printList = function(){
+
+    if(!this.head){
+        console.log('No value in the list !');
+        return
+    }
+
     let current = this.head
 
     let listValues = []
     while(current){
-        listValues.push = current.data
+        listValues.push(current.data)
         current = current.next
     }
 
-    console.log(listValues.join(" -> "));
+    console.log(listValues.join(" -> "))
 }
 
 LinkedList.prototype.reverse = function(){
@@ -128,17 +139,24 @@ LinkedList.prototype.reverse = function(){
     this.head = prev
 }
 
-LinkedList.prototype.reverse = function(){
-    let current = this.head
-    let prev = null
-    let next = null
+const LL = new LinkedList()
+LL.insertAtBegining(1)
+LL.insertAtBegining(2)
+LL.insertAtBegining(3)
+LL.insertAtBegining(6)
+LL.insertAtBegining(8)
+LL.insertAtBegining(9)
+LL.insertAtEnd(0)
+LL.insertAtEnd(7)
+LL.insertAtEnd(11)
 
-    while(current){
-        next = current.next
-        current.next = prev
-        prev = current
-        current = next
-    }
+LL.deleteFirst()
+LL.deleteLast()
 
-    this.head = prev
-}
+LL.deleteKey(0)
+
+console.log(LL.search(0))
+
+LL.reverse()
+
+LL.printList()
