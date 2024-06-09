@@ -21,7 +21,7 @@ class BinarySearchTree{
 
     }
 
-    insertNode(node, newNode,){
+    insertNode(node, newNode){
         if(newNode.key < node.key){
             if(!node.left){
                 node.left = newNode
@@ -71,6 +71,12 @@ class BinarySearchTree{
             node = node.left
         }
         return node
+    }
+
+    inorderTraversal(){
+        const result = []
+        this.inorder(this.root, result)
+        return result
     }
 
 }
