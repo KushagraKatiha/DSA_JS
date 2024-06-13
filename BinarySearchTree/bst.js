@@ -67,7 +67,7 @@ class BinarySearchTree{
     }
 
     findMinNode(node){
-        while(!node.left){
+        while(node.left){
             node = node.left
         }
         return node
