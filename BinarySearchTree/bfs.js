@@ -12,7 +12,7 @@ const breadthFirstSearch = (root) => {
     }
 
     const values = []
-    const queue = []
+    const queue = [root]
 
     while(queue.length > 0){
         const node = queue.shift()
@@ -26,5 +26,7 @@ const breadthFirstSearch = (root) => {
         }
     }
 
-    return [...values]
+    return values
 }
+
+module.exports = breadthFirstSearch

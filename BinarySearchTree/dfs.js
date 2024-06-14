@@ -32,7 +32,7 @@ const depthFirstTraversal = (root) => {
 
 const recursiveDepthFirstTraversal = (root) => {
     if(!root){
-        return // return empty array or message
+        return []// return empty array or message
     }
 
     const leftValues = recursiveDepthFirstTraversal(root.left)
@@ -40,3 +40,5 @@ const recursiveDepthFirstTraversal = (root) => {
 
     return [root.key, ...leftValues, ...rightValues]
 }
+
+module.exports = recursiveDepthFirstTraversal

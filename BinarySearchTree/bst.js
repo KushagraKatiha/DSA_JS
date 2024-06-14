@@ -1,3 +1,7 @@
+const recursiveDepthFirstTraversal = require('./dfs.js')
+const breadthFirstSearch = require('./bfs.js')
+const {treeSumBFS, treeSumDFS} = require('./treeSum.js')
+
 class BSTNode{
     constructor(key){
         this.key = key
@@ -73,10 +77,57 @@ class BinarySearchTree{
         return node
     }
 
-    inorderTraversal(){
-        const result = []
+    inOrderTraversal(){
+        let result = []
         this.inorder(this.root, result)
         return result
     }
 
+    inorder(node, result){
+        if(node){
+            this.inorder(node.left, result)
+            result.push(node.key)
+            this.inorder(node.right, result)
+        }
+    }
+
+    recursiveDepthFirstTraversal(){
+        return recursiveDepthFirstTraversal(this.root)
+    }
+
+    breadthFirstSearch(){
+        return breadthFirstSearch(this.root)
+    }
+
+    treeSumBFS(){
+        return treeSumBFS(this.root)
+    }
+
+    treeSumDFS(){
+        return treeSumDFS(this.root)
+    }
+
 }
+
+const myTree = new BinarySearchTree()
+
+myTree.insert(5)
+myTree.insert(6)
+myTree.insert(9)
+myTree.insert(1)
+myTree.insert(2)
+myTree.insert(0)
+myTree.insert(7)
+
+// myTree.delete(5)
+// myTree.delete(7)
+
+console.log(myTree.recursiveDepthFirstTraversal())
+console.log(myTree.breadthFirstSearch())
+
+console.log(myTree.inOrderTraversal())
+
+console.log(myTree.treeSumBFS());
+console.log(myTree.treeSumDFS());
+
+// console.log(myTree);

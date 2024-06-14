@@ -1,33 +1,42 @@
-// breadth
+// Breadth 
 
-const treeSumWithBFS = (root) => {
+function treeSumBFS(root){
     if(!root){
         return 0
     }
 
-    const queue = [root]
     let sum = 0
+    let queue = [root]
 
     while(queue.length > 0){
-        const node = queue.shift()
-        sum += node.key 
+        let node = queue.shift()
+        sum += node.key
 
         if(node.left){
             queue.push(node.left)
         }
-
-        if(node.rigth){
-            queue.push (node.right)
+        if(node.right){
+            queue.push(node.right)
         }
     }
+
+    return sum
 }
 
-// depth
+// Depth
 
-const treeSumWidthBFS = (root) => {
+function treeSumDFS(root){
     if(!root){
         return 0
     }
 
-    return root.key + treeSumWidthBFS(root.left) + treeSumWidthBFS(root.right)
+    let sum = root.key
+    sum += treeSumBFS(root.left) + treeSumBFS(root.right)
+
+    return sum
+}
+
+module.exports = {
+    treeSumBFS,
+    treeSumDFS
 }
