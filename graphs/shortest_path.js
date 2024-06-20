@@ -14,7 +14,6 @@ function createGraph(edges){
 
     for(const edge of edges){
         let [a, b] = edge
-        // console.log(a, b);
         if(!(a in graph)){
             graph[a] = []
         }
@@ -24,7 +23,28 @@ function createGraph(edges){
         graph[a].push(b)
         graph[b].push(a)
     }
-    console.log(graph);
+    return graph
 }
 
-createGraph(edges)
+function shortestPath(edges, start, dest){
+    const graph = createGraph(edges)
+    const queue = [ [start, 0] ]
+    const visited = new Set([start])
+
+    while(queue.length > 0){
+        const [node, length] = queue.shift()
+
+        if(node === dest){;
+            return [node, length]
+        }
+        // Process the childs
+        for(const neighbour of graph[node]){
+            if(!visited.has(neighbour)){
+                visited.add(neighbour)
+                queue.push([neighbour, length + 1])
+            }
+        }
+    }
+}
+
+console.log(shortestPath(edges, 'A', 'DZNM874'));
