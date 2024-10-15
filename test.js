@@ -1,12 +1,21 @@
-var gcdOfStrings = function(str1, str2) {
-    if(str1 + str2 !== str2 + str1) return ""
+var longestOnes = function(nums, k) {
+    let left = 0
+    let zeroCount = 0
+    let maxLen = 0
 
-    console.log(str1.length);
-    console.log(str2.length);
+    for(let right = 0; right < nums.length; right++){
+        if(nums[right] === 0) zeroCount++
+        while(zeroCount > k){
+            if(nums[left] === 0){
+                zeroCount--
+            }
+            left++
+        }
+        maxLen = Math.max(maxLen, right-left+1)
+    }
 
-    if(str2.length === 0) return str1
-    console.log(str1.length % str2.length);
-    return str1.slice(0, str1.length % str2.length)
-};
 
-console.log(gcdOfStrings('ABCABCABC', 'ABC'));
+    return maxLen
+7};
+
+console.log(longestOnes([1,1,1,0,0,0,1,1,1,1,0], 2));
