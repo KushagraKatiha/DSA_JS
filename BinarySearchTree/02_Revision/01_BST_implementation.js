@@ -185,5 +185,4 @@ myBST.insertNode(0)
 myBST.insertNode(8)
 myBST.insertNode(3)
 
-console.log(myBST.dfsR());
 
