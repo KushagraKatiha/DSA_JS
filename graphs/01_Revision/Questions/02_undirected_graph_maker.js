@@ -19,6 +19,7 @@ const edges = [
   ["b", "a"],
   ["c", "a"],
   ["b", "c"],
+  ["c", "q"],
   ["q", "r"],
   ["q", "s"],
   ["q", "u"],
@@ -43,6 +44,8 @@ function undirectedPath(edges) {
 }
 
 let graph = undirectedPath(edges);
+console.log(graph);
+
 
 function dfsRcr(graph, start, result = [], visited = new Set()) {
   if (!visited.has(start)) {
