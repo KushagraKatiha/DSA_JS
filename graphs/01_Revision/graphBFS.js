@@ -14,11 +14,11 @@ const bfs = (graph, start) => {
 
   while (queue.length > 0) {
     let node = queue.shift();
-    if (!visited.has(node)) {
-      visited.add(node);
-      result.push(node);
-      for (const neighbour of graph[node]) {
-        queue.push(neighbour);
+    for(const neighbour of graph[node]){
+      if(!visited.has(neighbour)){
+        visited.add(neighbour)
+        queue.push(neighbour)
+        result.push(neighbour)
       }
     }
   }
